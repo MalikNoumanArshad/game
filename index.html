@@ -57,6 +57,7 @@
         let isMobile = /Android|webOS|iphone|ipad|ipod|BlackBerry|IEMobile|Opera Mini/i.test(
           navigator.userAgent
         );
+
         let isInFirstScreen = false;
         let deviceOrientation = "";
         let isForcedToRotate = false;
@@ -171,9 +172,19 @@
     }
 
         height = aspectRatio * width;
+  if (isMobile) {
+    // Code specific to mobile devices
+    console.log("Running on a mobile device");
+  }else{
+    console.log("Not Running on a mobile device");
 
+  }
     if (height > screen.availHeight) {
+      if(isMobile){
+        height = screen.availHeight;
+      }else{
         height = 1080;
+      }
     }
 
     let sizeObj = { height: height, width: width };
