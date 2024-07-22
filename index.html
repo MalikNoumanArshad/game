@@ -153,8 +153,6 @@
           }
         }
 
-        
-
         function Resize() {
     const desktopPortraitModeMaxWidth = 960;
     let webglContainer = document.querySelector(".webgl");
@@ -175,7 +173,7 @@
         height = aspectRatio * width;
 
     if (height > screen.availHeight) {
-        height = 1080;
+        height = screen.availHeight;
     }
 
     let sizeObj = { height: height, width: width };
