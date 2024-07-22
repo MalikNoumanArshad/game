@@ -170,14 +170,10 @@
         aspectRatio = 960 < 600 ? 960 / 600 : 600 / 960;
     }
 
-    // if (isMobile) {
-    //     height = aspectRatio * width;
-    // } else {
-    //     height = 1080; // Set the height to 1080px for non-mobile devices
-    // }
+        height = aspectRatio * width;
 
     if (height > screen.availHeight) {
-        height = screen.availHeight;
+        height = 1080;
     }
 
     let sizeObj = { height: height, width: width };
@@ -185,6 +181,7 @@
     const unityContainer = document.getElementById("unityContainer");
 
     if (portraitMode && !isMobile && isInFirstScreen) {
+      
         webglContainer.style.width = desktopPortraitModeMaxWidth + "px";
         document.getElementById("unityContainer").style.maxWidth =
             desktopPortraitModeMaxWidth + "px";
