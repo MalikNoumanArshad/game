@@ -154,63 +154,68 @@
         }
 
         function Resize() {
-        const desktopPortraitModeMaxWidth = 960;
-        let webglContainer = document.querySelector(".webgl");
-        let webglMaxWidthString = isInFirstScreen
-          ? getComputedStyle(webglContainer).maxWidth.split("px")
-          : getComputedStyle(webglContainer).width.split("px");
-        let maxWidth = webglMaxWidthString[0];
-        let width = maxWidth;
-        let height;
-        let aspectRatio;
+    const desktopPortraitModeMaxWidth = 960;
+    let webglContainer = document.querySelector(".webgl");
+    let webglMaxWidthString = isInFirstScreen
+        ? getComputedStyle(webglContainer).maxWidth.split("px")
+        : getComputedStyle(webglContainer).width.split("px");
+    let maxWidth = webglMaxWidthString[0];
+    let width = maxWidth;
+    let height;
+    let aspectRatio;
 
-        if (portraitMode) {
-          aspectRatio = 600 > 960 ? 600 / 960 : 960 / 600;
-        } else {
-          aspectRatio = 960 < 600 ? 960 / 600 : 600 / 960;
-        }
+    if (portraitMode) {
+        aspectRatio = 600 > 960 ? 600 / 960 : 960 / 600;
+    } else {
+        aspectRatio = 960 < 600 ? 960 / 600 : 600 / 960;
+    }
 
-        height = 1080;
+    // if (isMobile) {
+    //     height = aspectRatio * width;
+    // } else {
+    //     height = 1080; // Set the height to 1080px for non-mobile devices
+    // }
 
-        if (height > screen.availHeight) {
-          height = screen.availHeight;
-        }
+    if (height > screen.availHeight) {
+        height = screen.availHeight;
+    }
 
-        let sizeObj = { height: height, width: width };
+    let sizeObj = { height: height, width: width };
 
-        const unityContainer = document.getElementById("unityContainer");
+    const unityContainer = document.getElementById("unityContainer");
 
-        if (portraitMode && !isMobile && isInFirstScreen) {
-          webglContainer.style.width = desktopPortraitModeMaxWidth + "px";
-          document.getElementById("unityContainer").style.maxWidth =
-            1920 + "px";
-          document.getElementById("unityContainer").style.margin = "0 auto";
-        } else if (portraitMode && !isMobile && !isInFirstScreen) {
-          webglContainer.style.height = 600 + "px"; //convert to %UNITY_HEIGHT%
-          webglContainer.style.width = desktopPortraitModeMaxWidth + "px";
-          unityContainer.style.width = desktopPortraitModeMaxWidth + "px";
-          unityContainer.style.height = webglContainer.style.height;
-          unityContainer.style.margin = "0 auto";
-        } else {
-          document.getElementById("unity-canvas").style.width = width + "px";
-          document.getElementById("unity-canvas").style.height = height + "px";
-        }
+    if (portraitMode && !isMobile && isInFirstScreen) {
+        webglContainer.style.width = desktopPortraitModeMaxWidth + "px";
+        document.getElementById("unityContainer").style.maxWidth =
+            desktopPortraitModeMaxWidth + "px";
+        document.getElementById("unityContainer").style.margin = "0 auto";
+    } else if (portraitMode && !isMobile && !isInFirstScreen) {
+        webglContainer.style.height = 600 + "px"; //convert to %UNITY_HEIGHT%
+        webglContainer.style.width = desktopPortraitModeMaxWidth + "px";
+        unityContainer.style.width = desktopPortraitModeMaxWidth + "px";
+        unityContainer.style.height = webglContainer.style.height;
+        unityContainer.style.margin = "0 auto";
+    } else {
+        document.getElementById("unity-canvas").style.width = width + "px";
+        document.getElementById("unity-canvas").style.height = height + "px";
+    }
 
-        if (deviceOrientation === "landscape" && isMobile) {
-          webglContainer.style.height = screen.availHeight;
-        }
+    if (deviceOrientation === "landscape" && isMobile) {
+        webglContainer.style.height = screen.availHeight;
+    }
 
-        try {
-          unityInstance.SendMessage(
+    try {
+        unityInstance.SendMessage(
             "Main Camera",
             "LoadBrowserVariables",
             JSON.stringify(sizeObj)
-          );
-        } catch {
-          console.log("Main camera not found,maybe not a demo build");
-        }
-        hideObsoleteButtons();
-      }
+        );
+    } catch {
+        console.log("Main camera not found, maybe not a demo build");
+    }
+    hideObsoleteButtons();
+}
+
         //The event for when page refreshes or closes
         window.addEventListener("beforeunload", function (e) {
           OnUnload();
