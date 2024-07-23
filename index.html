@@ -158,13 +158,14 @@ console.log("hahahahahahahhahhahahahhhahahahah");
 
       function OnUnload() {
         if (unityInstance) {
+        setTimeout(applyPortraitStyles, 5000);
+
           unityInstance.SendMessage("_BrowserControls", "BrowserUnloaded");
         }
       }
 
       window.onload = () => {
         forceOrentationImg = document.getElementById("forceOrientationImg");
-        setTimeout(applyPortraitStyles, 5000);
 
         window.addEventListener("resize", () => {
           Resize();
