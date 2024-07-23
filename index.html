@@ -95,7 +95,6 @@ console.log("hahahahahahahhahhahahahhhahahahah");
 
     // Apply the portrait styles after 5 seconds
 
-      setTimeout(applyPortraitStyles, 10000);
 
     
       function toggleHamburger(obj) {
@@ -165,6 +164,7 @@ console.log("hahahahahahahhahhahahahhhahahahah");
 
       window.onload = () => {
         forceOrentationImg = document.getElementById("forceOrientationImg");
+        setTimeout(applyPortraitStyles, 5000);
 
         window.addEventListener("resize", () => {
           Resize();
