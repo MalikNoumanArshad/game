@@ -35,6 +35,19 @@
         width: 100%;
         height: 100%;
       }
+      @media screen and (orientation: portrait) {
+  body {
+    
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+}
+
     </style>
   </head>
 
@@ -301,35 +314,35 @@
         }
       }
 
-      function forceOrientation() {
-        if (!isMobile) return;
-        let shouldForceOrient = shouldForceOrientation();
-        let forceOrientationBackground = document.getElementById(
-          "forceOrientationBackground"
-        );
-        if (shouldForceOrient) {
-          document.body.style.overflow = "hidden";
-          isForcedToRotate = true;
-          forceOrientationBackground.style.display = "block";
-          if (deviceOrientation == "portrait") {
-            forceOrentationImg.setAttribute("src", forceLandscapeIcon);
-            forceOrentationImg.className = "forceLandscape";
-          } else {
-            forceOrentationImg.setAttribute("src", forcePortraitIcon);
-            forceOrentationImg.className = "forcePortrait";
-          }
-        } else {
-          document.body.style.overflow = "visible";
-          isForcedToRotate = false;
-          forceOrientationBackground.style.display = "none";
-        }
-      }
+      // function forceOrientation() {
+      //   if (!isMobile) return;
+      //   let shouldForceOrient = shouldForceOrientation();
+      //   let forceOrientationBackground = document.getElementById(
+      //     "forceOrientationBackground"
+      //   );
+      //   if (shouldForceOrient) {
+      //     document.body.style.overflow = "hidden";
+      //     isForcedToRotate = true;
+      //     forceOrientationBackground.style.display = "block";
+      //     if (deviceOrientation == "portrait") {
+      //       forceOrentationImg.setAttribute("src", forceLandscapeIcon);
+      //       forceOrentationImg.className = "forceLandscape";
+      //     } else {
+      //       forceOrentationImg.setAttribute("src", forcePortraitIcon);
+      //       forceOrentationImg.className = "forcePortrait";
+      //     }
+      //   } else {
+      //     document.body.style.overflow = "visible";
+      //     isForcedToRotate = false;
+      //     forceOrientationBackground.style.display = "none";
+      //   }
+      // }
 
       function shouldForceOrientation() {
         return (portraitMode && deviceOrientation == "landscape") ||
           (!portraitMode && deviceOrientation == "portrait")
-          ? false
-          : true;
+          ? true  
+          : false;
       }
 
       function attachToUnityCanvas() {
