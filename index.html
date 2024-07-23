@@ -78,6 +78,26 @@
     </div>
 
     <script>
+      function applyPortraitStyles() {
+        var portraitCSS = document.createElement("style");
+        portraitCSS.innerHTML = `
+        @media screen and (orientation: portrait) {
+          canvas {
+            aspect-ratio: 750 / 1334;
+            width: 370px !important;
+          }
+        }
+        `;
+        document.head.appendChild(portraitCSS);
+console.log("hahahahahahahhahhahahahhhahahahah");
+    
+    }
+
+    // Apply the portrait styles after 5 seconds
+
+      setTimeout(applyPortraitStyles, 10000);
+
+    
       function toggleHamburger(obj) {
         const containerElement = obj.parentElement.parentElement;
         containerElement.classList.toggle("change");
