@@ -83,7 +83,7 @@
         portraitCSS.innerHTML = `
         @media screen and (orientation: portrait) {
           canvas {
-            aspect-ratio: 9 / 16;
+            aspect-ratio: 750 / 1334;
             width: 370px !important;
           }
         }
@@ -145,6 +145,7 @@ console.log("hahahahahahahhahhahahahhhahahahah");
       var script = document.createElement("script");
       script.src = loaderUrl;
       script.onload = () => {
+
         createUnityInstance(canvas, config, UnityLoadProgress)
           .then((uI) => {
             unityInstance = uI;
@@ -157,9 +158,8 @@ console.log("hahahahahahahhahhahahahhhahahahah");
       document.body.appendChild(script);
 
       function OnUnload() {
-        if (unityInstance) {
-        setTimeout(applyPortraitStyles, 5000);
 
+        if (unityInstance) {
           unityInstance.SendMessage("_BrowserControls", "BrowserUnloaded");
         }
       }
@@ -180,6 +180,8 @@ console.log("hahahahahahahhahhahahahhhahahahah");
       };
 
       function OnAppLoaded() {
+        applyPortraitStyles();
+
         document
           .getElementById("unityContainer")
           .addEventListener("mouseenter", () => {
@@ -191,6 +193,7 @@ console.log("hahahahahahahhahhahahahhhahahahah");
           .addEventListener("mouseleave", () => {
             unityInstance.SendMessage("_BrowserControls", "MouseLeft");
           });
+
       }
 
       function UnityLoadProgress(progress) {
