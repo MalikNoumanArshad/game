@@ -83,7 +83,7 @@
         portraitCSS.innerHTML = `
         @media screen and (orientation: portrait) {
           canvas {
-            aspect-ratio: 750 / 1334;
+          
             width: 370px !important;
           }
         }
@@ -180,7 +180,8 @@ console.log("hahahahahahahhahhahahahhhahahahah");
       };
 
       function OnAppLoaded() {
-        applyPortraitStyles();
+        setTimeout(applyPortraitStyles, 5000);
+
 
         document
           .getElementById("unityContainer")
