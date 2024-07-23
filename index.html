@@ -329,7 +329,7 @@
             forceOrentationImg.className = "forceLandscape";
           } else {
             forceOrentationImg.setAttribute("src", forcePortraitIcon);
-            forceOrentationImg.className = "forcePortrait";
+            forceOrentationImg.className = "forceLandscape";
           }
         } else {
           document.body.style.overflow = "visible";
@@ -341,7 +341,7 @@
       function shouldForceOrientation() {
         return (portraitMode && deviceOrientation == "landscape") ||
           (!portraitMode && deviceOrientation == "portrait")
-          ? true
+          ? false
           : false;
       }
 
