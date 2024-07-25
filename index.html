@@ -47,6 +47,30 @@
   }
 
 }
+/* General portrait orientation styles */
+@media screen and (orientation: portrait) {
+  body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+/* High-resolution displays (Retina) */
+@media screen and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+  body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
 
     </style>
   </head>
@@ -84,7 +108,8 @@
         @media screen and (orientation: portrait) {
           canvas {
           
-            width: 370px !important;
+                   width: 388px !important;
+        height: 400px !important;
           }
         }
         `;
@@ -205,7 +230,7 @@ console.log("check portrait");
             unityInstance.SendMessage("_BrowserControls", "BrowserLoaded");
             Resize();
             OnAppLoaded();
-          }, 2500);
+          }, 1500);
         }
       }
 
